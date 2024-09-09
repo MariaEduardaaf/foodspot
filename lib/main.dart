@@ -29,12 +29,14 @@ class MyApp extends StatelessWidget {
         ),
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.black,
+          iconTheme: IconThemeData(color: Colors.white),  // Ícones brancos na AppBar
         ),
         buttonTheme: const ButtonThemeData(
           buttonColor: Colors.tealAccent,
         ),
+        iconTheme: const IconThemeData(color: Colors.white),  // Ícones brancos em geral
       ),
-      home: HomeScreen(),  // Tela inicial definida como HomeScreen
+      home: HomeScreen(),
     );
   }
 }
