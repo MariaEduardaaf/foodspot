@@ -12,10 +12,10 @@ class RestaurantListScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Restaurants'),
+        iconTheme: IconThemeData(color: Colors.white),  // Ícones brancos
       ),
       body: Column(
         children: [
-          // Barra de pesquisa
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
@@ -34,7 +34,6 @@ class RestaurantListScreen extends ConsumerWidget {
               },
             ),
           ),
-          // Lista de restaurantes
           Expanded(
             child: restaurants.isEmpty
                 ? Center(
@@ -48,7 +47,7 @@ class RestaurantListScreen extends ConsumerWidget {
                     itemBuilder: (context, index) {
                       final Restaurant restaurant = restaurants[index];
 
-                      // Escolha da imagem correta com base no nome do restaurante
+                      // Define o caminho da imagem com base no nome do restaurante
                       String imagePath;
                       switch (restaurant.name) {
                         case "The Smokehouse":
@@ -103,13 +102,13 @@ class RestaurantListScreen extends ConsumerWidget {
                             ),
                             trailing: Icon(Icons.arrow_forward_ios, color: Colors.white),
                             onTap: () {
-                              // Ao navegar para a tela de detalhes, passe o caminho da imagem como argumento
+                              // Navegação para a tela de detalhes com o caminho da imagem
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => RestaurantDetailsScreen(
                                     restaurant: restaurant,
-                                    imagePath: imagePath, // Passando o caminho da imagem aqui
+                                    imagePath: imagePath,  // Passando o caminho da imagem
                                   ),
                                 ),
                               );
