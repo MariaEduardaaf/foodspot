@@ -1,10 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/restaurant.dart';
-import '../services/local_data_service.dart';
+import '../services/api_service.dart';
+
+// Instância do serviço de API
+final apiServiceProvider = Provider((ref) => ApiService());
 
 // Provider que carrega a lista de restaurantes
 final restaurantProvider = FutureProvider<List<Restaurant>>((ref) async {
-  return await LocalDataService().fetchRestaurants();
+  return await ref.read(apiServiceProvider).fetchRestaurants();
 });
 
 // Provider que controla o estado da barra de pesquisa
@@ -14,8 +17,8 @@ final searchProvider = StateProvider<String>((ref) => '');
 final filteredRestaurantsProvider = Provider<List<Restaurant>>((ref) {
   final searchQuery = ref.watch(searchProvider);
   final restaurantList = ref.watch(restaurantProvider).maybeWhen(
-        data: (restaurants) => restaurants.cast<Restaurant>(),  // Forçando o tipo para List<Restaurant>
-        orElse: () => <Restaurant>[],  // Garantindo que o tipo vazio seja List<Restaurant>
+        data: (restaurants) => restaurants.cast<Restaurant>(),
+        orElse: () => <Restaurant>[],
       );
 
   if (searchQuery.isEmpty) {
