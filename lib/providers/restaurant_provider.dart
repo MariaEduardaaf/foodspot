@@ -2,31 +2,31 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/restaurant.dart';
 import '../services/api_service.dart';
 
-// Instância do serviço de API
-final apiServiceProvider = Provider((ref) => ApiService());
+/// Provides an instance of the API service
+final apiServiceProvider = Provider<ApiService>((ref) => ApiService());
 
-// Provider que carrega a lista de restaurantes
+/// Provider to fetch the list of restaurants
 final restaurantProvider = FutureProvider<List<Restaurant>>((ref) async {
-  return await ref.read(apiServiceProvider).fetchRestaurants();
+  return ref.read(apiServiceProvider).fetchRestaurants();
 });
 
-// Provider que controla o estado da barra de pesquisa
+/// Provider that manages the search query state
 final searchProvider = StateProvider<String>((ref) => '');
 
-// Provider que filtra a lista de restaurantes com base no termo de pesquisa
+/// Provider that filters the restaurant list based on the search query
 final filteredRestaurantsProvider = Provider<List<Restaurant>>((ref) {
-  final searchQuery = ref.watch(searchProvider);
+  final searchQuery = ref.watch(searchProvider).toLowerCase();
   final restaurantList = ref.watch(restaurantProvider).maybeWhen(
-        data: (restaurants) => restaurants.cast<Restaurant>(),
-        orElse: () => <Restaurant>[],
-      );
+    data: (restaurants) => restaurants.cast<Restaurant>(), // Ensure the correct type
+    orElse: () => <Restaurant>[], // Fallback to an empty list if data is not available
+  );
 
   if (searchQuery.isEmpty) {
     return restaurantList;
   }
 
-  return restaurantList
-      .where((restaurant) =>
-          restaurant.name.toLowerCase().contains(searchQuery.toLowerCase()))
-      .toList();
+  // Filter the restaurant list by name based on the search query
+  return restaurantList.where((restaurant) {
+    return restaurant.name.toLowerCase().contains(searchQuery);
+  }).toList();
 });

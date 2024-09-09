@@ -5,18 +5,23 @@ class RestaurantDetailsScreen extends StatelessWidget {
   final Restaurant restaurant;
   final String imagePath;
 
-  const RestaurantDetailsScreen({Key? key, required this.restaurant, required this.imagePath}) : super(key: key);
+  const RestaurantDetailsScreen({
+    Key? key,
+    required this.restaurant,
+    required this.imagePath,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(restaurant.name),
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          // Restaurant image
           Hero(
             tag: 'restaurant-${restaurant.id}',
             child: Image.asset(
@@ -25,11 +30,12 @@ class RestaurantDetailsScreen extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
+          // Restaurant name
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
               restaurant.name,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Poppins',
@@ -37,11 +43,16 @@ class RestaurantDetailsScreen extends StatelessWidget {
               ),
             ),
           ),
+          // Restaurant cuisine
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(
               'Cuisine: ${restaurant.cuisine}',
-              style: TextStyle(fontSize: 18, fontFamily: 'Poppins', color: Colors.grey),
+              style: const TextStyle(
+                fontSize: 18,
+                fontFamily: 'Poppins',
+                color: Colors.grey,
+              ),
             ),
           ),
         ],

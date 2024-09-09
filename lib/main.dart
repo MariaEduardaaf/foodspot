@@ -3,10 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'screens/home_screen.dart';
 
 void main() {
-  runApp(ProviderScope(child: MyApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,14 +31,14 @@ class MyApp extends StatelessWidget {
         ),
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.black,
-          iconTheme: IconThemeData(color: Colors.white),  // Ícones brancos na AppBar
+          iconTheme: IconThemeData(color: Colors.white), 
         ),
         buttonTheme: const ButtonThemeData(
           buttonColor: Colors.tealAccent,
         ),
-        iconTheme: const IconThemeData(color: Colors.white),  // Ícones brancos em geral
+        iconTheme: const IconThemeData(color: Colors.white), 
       ),
-      home: HomeScreen(),
+      home:  HomeScreen(),
     );
   }
 }

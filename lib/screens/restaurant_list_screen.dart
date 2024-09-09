@@ -11,8 +11,8 @@ class RestaurantListScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Restaurants'),
-        iconTheme: IconThemeData(color: Colors.white),  // Ícones brancos
+        title: const Text('Restaurants'),
+        iconTheme: const IconThemeData(color: Colors.white), 
       ),
       body: Column(
         children: [
@@ -21,14 +21,14 @@ class RestaurantListScreen extends ConsumerWidget {
             child: TextField(
               decoration: InputDecoration(
                 labelText: 'Search Restaurants',
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle: const TextStyle(color: Colors.white),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: const BorderSide(color: Colors.white),
                 ),
-                prefixIcon: Icon(Icons.search, color: Colors.white),
+                prefixIcon: const Icon(Icons.search, color: Colors.white),
               ),
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
               onChanged: (value) {
                 ref.read(searchProvider.notifier).state = value;
               },
@@ -36,7 +36,7 @@ class RestaurantListScreen extends ConsumerWidget {
           ),
           Expanded(
             child: restaurants.isEmpty
-                ? Center(
+                ? const Center(
                     child: Text(
                       'No restaurants found.',
                       style: TextStyle(color: Colors.white),
@@ -47,24 +47,8 @@ class RestaurantListScreen extends ConsumerWidget {
                     itemBuilder: (context, index) {
                       final Restaurant restaurant = restaurants[index];
 
-                      // Define o caminho da imagem com base no nome do restaurante
-                      String imagePath;
-                      switch (restaurant.name) {
-                        case "The Smokehouse":
-                          imagePath = 'assets/images/meat-platter-perfect.jpg';
-                          break;
-                        case "Pinocchio\'s Pizza":
-                          imagePath = 'assets/images/pizza-pinocchio.jpeg';
-                          break;
-                        case "Felipe\'s Taqueria":
-                          imagePath = 'assets/images/taqueria.jpeg';
-                          break;
-                        case "Tasty Burger":
-                          imagePath = 'assets/images/burguer.jpeg';
-                          break;
-                        default:
-                          imagePath = 'assets/images/default.jpg';
-                      }
+                      // Define image path based on restaurant name
+                      final imagePath = _getImagePath(restaurant.name);
 
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -75,7 +59,7 @@ class RestaurantListScreen extends ConsumerWidget {
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: ListTile(
-                            contentPadding: EdgeInsets.all(15),
+                            contentPadding: const EdgeInsets.all(15),
                             leading: Hero(
                               tag: 'restaurant-${restaurant.id}',
                               child: ClipRRect(
@@ -90,7 +74,7 @@ class RestaurantListScreen extends ConsumerWidget {
                             ),
                             title: Text(
                               restaurant.name,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'Poppins',
                                 color: Colors.white,
@@ -98,17 +82,17 @@ class RestaurantListScreen extends ConsumerWidget {
                             ),
                             subtitle: Text(
                               restaurant.cuisine,
-                              style: TextStyle(color: Colors.grey),
+                              style: const TextStyle(color: Colors.grey),
                             ),
-                            trailing: Icon(Icons.arrow_forward_ios, color: Colors.white),
+                            trailing: const Icon(Icons.arrow_forward_ios, color: Colors.white),
                             onTap: () {
-                              // Navegação para a tela de detalhes com o caminho da imagem
+                              // Navigate to the details screen with image path
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => RestaurantDetailsScreen(
                                     restaurant: restaurant,
-                                    imagePath: imagePath,  // Passando o caminho da imagem
+                                    imagePath: imagePath, // Pass the image path
                                   ),
                                 ),
                               );
@@ -122,5 +106,21 @@ class RestaurantListScreen extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  /// Get image path based on restaurant name
+  String _getImagePath(String restaurantName) {
+    switch (restaurantName) {
+      case "The Smokehouse":
+        return 'assets/images/meat-platter-perfect.jpg';
+      case "Pinocchio's Pizza":
+        return 'assets/images/pizza-pinocchio.jpeg';
+      case "Felipe's Taqueria":
+        return 'assets/images/taqueria.jpeg';
+      case "Tasty Burger":
+        return 'assets/images/burguer.jpeg';
+      default:
+        return 'assets/images/default.jpg';
+    }
   }
 }

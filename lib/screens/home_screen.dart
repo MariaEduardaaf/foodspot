@@ -10,19 +10,20 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Título chamativo
+            // Title text
             const Text(
               'Welcome to FoodSpot',
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
-                color: Colors.tealAccent,  // Cor destacada
+                color: Colors.tealAccent, 
                 fontFamily: 'Poppins',
               ),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
-            // Texto complementar
+            
+            // Subtitle text
             const Text(
               'Discover the best restaurants near you',
               style: TextStyle(
@@ -33,10 +34,11 @@ class HomeScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 40),
-            // Botão para navegar para a tela de restaurantes
+            
+            // Button to navigate to the restaurant list screen
             ElevatedButton(
               onPressed: () {
-                // Navega para a lista de restaurantes
+                // Navigate to restaurant list screen
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -45,7 +47,8 @@ class HomeScreen extends StatelessWidget {
                 );
               },
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15), backgroundColor: Colors.tealAccent,  // Cor do botão
+                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                backgroundColor: Colors.tealAccent, 
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
@@ -54,7 +57,7 @@ class HomeScreen extends StatelessWidget {
                 'Explore Restaurants',
                 style: TextStyle(
                   fontSize: 18,
-                  color: Colors.black,  // Texto contrastante
+                  color: Colors.black, 
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.bold,
                 ),

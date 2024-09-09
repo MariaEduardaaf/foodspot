@@ -1,17 +1,16 @@
 import 'dart:convert';
-import 'package:flutter/services.dart';
 import '../models/restaurant.dart';
 
 class ApiService {
-  final String apiUrl = 'mocked';  // API mockada
+  final String apiUrl = 'mocked'; // Simulated API URL
 
-  // Método GET para buscar todos os restaurantes (simulando uma requisição HTTP)
+  /// Simulates a GET request to fetch all restaurants
   Future<List<Restaurant>> fetchRestaurants() async {
-    // Simulando um atraso como se estivesse fazendo uma requisição real
-    await Future.delayed(Duration(seconds: 2));
+    // Simulate network delay
+    await Future.delayed(const Duration(seconds: 2));
 
-    // Dados mockados (substitui a chamada HTTP)
-    final mockData = '''
+    // Mock restaurant data
+    const mockData = '''
     {
       "restaurants": [
         {
@@ -38,20 +37,20 @@ class ApiService {
     }
     ''';
 
-    // Simulando o parsing do JSON
-    final Map<String, dynamic> jsonResponse = json.decode(mockData);
-    final List<dynamic> restaurantList = jsonResponse['restaurants'];
+    // Parse the JSON mock data
+    final jsonResponse = json.decode(mockData) as Map<String, dynamic>;
+    final restaurantList = jsonResponse['restaurants'] as List<dynamic>;
 
-    // Retornando a lista de restaurantes mockados
+    // Return a list of Restaurant objects
     return restaurantList.map((json) => Restaurant.fromJson(json)).toList();
   }
 
-  // Simular um método PATCH para atualizar um restaurante
+  /// Simulates a PATCH request to update a restaurant's details
   Future<void> updateRestaurant(int id, Map<String, dynamic> updates) async {
-    // Simulando um atraso
-    await Future.delayed(Duration(seconds: 1));
+    // Simulate network delay
+    await Future.delayed(const Duration(seconds: 1));
 
-    // Simulação de sucesso na atualização
-    print('Restaurante $id atualizado com: $updates');
+    // Simulate successful update
+    print('Restaurant $id updated with: $updates');
   }
 }
