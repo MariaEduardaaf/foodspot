@@ -1,6 +1,7 @@
 name: foodspot
-description: "A new Flutter project."
-publish_to: 'none'
+description: "FoodSpot is a Flutter app that helps users discover and explore restaurants nearby. This project includes a simple restaurant listing interface with search functionality, state management using Riverpod, and a clean UI with Google Fonts integration."
+
+publish_to: 'none' 
 
 version: 1.0.0+1
 
@@ -10,14 +11,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_riverpod: ^1.0.0
-  cupertino_icons: ^1.0.6
-  google_fonts: ^3.0.1
+  flutter_riverpod: ^1.0.0 
+  cupertino_icons: ^1.0.6 
+  google_fonts: ^3.0.1 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
+  flutter_lints: ^3.0.0 
 
 flutter:
   uses-material-design: true
@@ -34,4 +35,3 @@ flutter:
     - assets/images/pizza-pinocchio.jpeg
     - assets/images/taqueria.jpeg
     - assets/images/burguer.jpeg
-
