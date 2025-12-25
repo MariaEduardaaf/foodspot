@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'screens/home_screen.dart';
+import 'screens/splash_screen.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'FoodSpot',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Colors.black,
         colorScheme: ColorScheme.fromSwatch().copyWith(
@@ -31,14 +32,14 @@ class MyApp extends StatelessWidget {
         ),
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.black,
-          iconTheme: IconThemeData(color: Colors.white), 
+          iconTheme: IconThemeData(color: Colors.white),
         ),
         buttonTheme: const ButtonThemeData(
           buttonColor: Colors.tealAccent,
         ),
-        iconTheme: const IconThemeData(color: Colors.white), 
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
-      home:  HomeScreen(),
+      home: const SplashScreen(),
     );
   }
 }

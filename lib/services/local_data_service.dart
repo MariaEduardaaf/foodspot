@@ -1,51 +1,170 @@
-import 'dart:convert';
 import '../models/restaurant.dart';
 
 class LocalDataService {
-  /// Simulates fetching restaurant data
   Future<List<Restaurant>> fetchRestaurants() async {
-    // Mock restaurant data
-    const mockData = '''
-    {
-      "restaurants": [
-        {
-          "id": 1,
-          "name": "The Smokehouse",
-          "cuisine": "Barbecue"
+    await Future.delayed(const Duration(milliseconds: 500));
+    
+    return [
+      Restaurant(
+        id: 1,
+        name: "The Smokehouse",
+        cuisine: "Barbecue",
+        imageUrl: "assets/images/restaurant1.jpg",
+        rating: 4.7,
+        address: "123 Main Street, Downtown",
+        phone: "(555) 123-4567",
+        priceLevel: 2,
+        description: "Authentic BBQ with slow-smoked meats and homemade sauces. Family-friendly atmosphere with outdoor seating.",
+        hours: {
+          'monday': OpeningHours(open: '11:00', close: '22:00'),
+          'tuesday': OpeningHours(open: '11:00', close: '22:00'),
+          'wednesday': OpeningHours(open: '11:00', close: '22:00'),
+          'thursday': OpeningHours(open: '11:00', close: '23:00'),
+          'friday': OpeningHours(open: '11:00', close: '23:00'),
+          'saturday': OpeningHours(open: '10:00', close: '23:00'),
+          'sunday': OpeningHours(open: '10:00', close: '21:00'),
         },
-        {
-          "id": 2,
-          "name": "Pinocchio's Pizza",
-          "cuisine": "Italian"
+      ),
+      Restaurant(
+        id: 2,
+        name: "Sakura Sushi",
+        cuisine: "Japanese",
+        imageUrl: "assets/images/restaurant2.jpg",
+        rating: 4.9,
+        address: "456 Oak Avenue, Uptown",
+        phone: "(555) 234-5678",
+        priceLevel: 3,
+        description: "Premium sushi and sashimi prepared by expert chefs. Fresh fish flown in daily from Japan.",
+        hours: {
+          'monday': null, // Closed on Mondays
+          'tuesday': OpeningHours(open: '12:00', close: '22:00'),
+          'wednesday': OpeningHours(open: '12:00', close: '22:00'),
+          'thursday': OpeningHours(open: '12:00', close: '22:00'),
+          'friday': OpeningHours(open: '12:00', close: '23:00'),
+          'saturday': OpeningHours(open: '12:00', close: '23:00'),
+          'sunday': OpeningHours(open: '12:00', close: '21:00'),
         },
-        {
-          "id": 3,
-          "name": "Felipe's Taqueria",
-          "cuisine": "Mexican"
+      ),
+      Restaurant(
+        id: 3,
+        name: "Taco Fiesta",
+        cuisine: "Mexican",
+        imageUrl: "assets/images/restaurant3.jpg",
+        rating: 4.5,
+        address: "789 Elm Boulevard, Westside",
+        phone: "(555) 345-6789",
+        priceLevel: 1,
+        description: "Authentic Mexican street food with fresh ingredients. Known for our handmade tortillas and salsa bar.",
+        hours: {
+          'monday': OpeningHours(open: '10:00', close: '22:00'),
+          'tuesday': OpeningHours(open: '10:00', close: '22:00'),
+          'wednesday': OpeningHours(open: '10:00', close: '22:00'),
+          'thursday': OpeningHours(open: '10:00', close: '22:00'),
+          'friday': OpeningHours(open: '10:00', close: '24:00'),
+          'saturday': OpeningHours(open: '10:00', close: '24:00'),
+          'sunday': OpeningHours(open: '11:00', close: '21:00'),
         },
-        {
-          "id": 4,
-          "name": "Tasty Burger",
-          "cuisine": "American"
-        }
-      ]
-    }
-    ''';
-
-    // Simulate a short delay (50ms)
-    await Future.delayed(const Duration(milliseconds: 50));
-
-    try {
-      // Parse the JSON mock data
-      final jsonResponse = json.decode(mockData) as Map<String, dynamic>;
-      final restaurantList = jsonResponse['restaurants'] as List<dynamic>;
-
-      // Return a list of Restaurant objects
-      return restaurantList.map((json) => Restaurant.fromJson(json)).toList();
-    } catch (e) {
-      // Log the error and return an empty list
-      print('Error loading restaurants: $e');
-      return [];
-    }
+      ),
+      Restaurant(
+        id: 4,
+        name: "La Bella Italia",
+        cuisine: "Italian",
+        imageUrl: "assets/images/restaurant4.jpg",
+        rating: 4.8,
+        address: "321 Pine Street, Old Town",
+        phone: "(555) 456-7890",
+        priceLevel: 3,
+        description: "Classic Italian cuisine with handmade pasta and wood-fired pizzas. Romantic atmosphere perfect for date nights.",
+        hours: {
+          'monday': OpeningHours(open: '17:00', close: '22:00'),
+          'tuesday': OpeningHours(open: '17:00', close: '22:00'),
+          'wednesday': OpeningHours(open: '17:00', close: '22:00'),
+          'thursday': OpeningHours(open: '17:00', close: '22:00'),
+          'friday': OpeningHours(open: '17:00', close: '23:00'),
+          'saturday': OpeningHours(open: '12:00', close: '23:00'),
+          'sunday': OpeningHours(open: '12:00', close: '21:00'),
+        },
+      ),
+      Restaurant(
+        id: 5,
+        name: "Dragon Palace",
+        cuisine: "Chinese",
+        imageUrl: "assets/images/restaurant5.jpg",
+        rating: 4.4,
+        address: "567 Maple Drive, Chinatown",
+        phone: "(555) 567-8901",
+        priceLevel: 2,
+        description: "Traditional Cantonese and Szechuan dishes. Famous for dim sum brunch on weekends.",
+        hours: {
+          'monday': OpeningHours(open: '11:00', close: '22:00'),
+          'tuesday': OpeningHours(open: '11:00', close: '22:00'),
+          'wednesday': OpeningHours(open: '11:00', close: '22:00'),
+          'thursday': OpeningHours(open: '11:00', close: '22:00'),
+          'friday': OpeningHours(open: '11:00', close: '23:00'),
+          'saturday': OpeningHours(open: '10:00', close: '23:00'),
+          'sunday': OpeningHours(open: '10:00', close: '22:00'),
+        },
+      ),
+      Restaurant(
+        id: 6,
+        name: "Burger Joint",
+        cuisine: "American",
+        imageUrl: "assets/images/restaurant6.jpg",
+        rating: 4.3,
+        address: "890 Cedar Lane, Midtown",
+        phone: "(555) 678-9012",
+        priceLevel: 1,
+        description: "Gourmet burgers with grass-fed beef and creative toppings. Best milkshakes in town!",
+        hours: {
+          'monday': OpeningHours(open: '11:00', close: '23:00'),
+          'tuesday': OpeningHours(open: '11:00', close: '23:00'),
+          'wednesday': OpeningHours(open: '11:00', close: '23:00'),
+          'thursday': OpeningHours(open: '11:00', close: '23:00'),
+          'friday': OpeningHours(open: '11:00', close: '24:00'),
+          'saturday': OpeningHours(open: '11:00', close: '24:00'),
+          'sunday': OpeningHours(open: '12:00', close: '22:00'),
+        },
+      ),
+      Restaurant(
+        id: 7,
+        name: "Spice Route",
+        cuisine: "Indian",
+        imageUrl: "assets/images/restaurant7.jpg",
+        rating: 4.6,
+        address: "234 Birch Road, East End",
+        phone: "(555) 789-0123",
+        priceLevel: 2,
+        description: "Aromatic curries and tandoori specialties. Extensive vegetarian menu available.",
+        hours: {
+          'monday': OpeningHours(open: '11:30', close: '22:00'),
+          'tuesday': OpeningHours(open: '11:30', close: '22:00'),
+          'wednesday': null, // Closed on Wednesdays
+          'thursday': OpeningHours(open: '11:30', close: '22:00'),
+          'friday': OpeningHours(open: '11:30', close: '23:00'),
+          'saturday': OpeningHours(open: '11:30', close: '23:00'),
+          'sunday': OpeningHours(open: '12:00', close: '21:00'),
+        },
+      ),
+      Restaurant(
+        id: 8,
+        name: "Mediterranean Grill",
+        cuisine: "Mediterranean",
+        imageUrl: "assets/images/restaurant8.jpg",
+        rating: 4.5,
+        address: "678 Walnut Street, Harbor District",
+        phone: "(555) 890-1234",
+        priceLevel: 2,
+        description: "Fresh Mediterranean cuisine with Greek and Turkish influences. Beautiful waterfront views.",
+        hours: {
+          'monday': OpeningHours(open: '11:00', close: '22:00'),
+          'tuesday': OpeningHours(open: '11:00', close: '22:00'),
+          'wednesday': OpeningHours(open: '11:00', close: '22:00'),
+          'thursday': OpeningHours(open: '11:00', close: '22:00'),
+          'friday': OpeningHours(open: '11:00', close: '23:00'),
+          'saturday': OpeningHours(open: '10:00', close: '23:00'),
+          'sunday': OpeningHours(open: '10:00', close: '21:00'),
+        },
+      ),
+    ];
   }
 }
